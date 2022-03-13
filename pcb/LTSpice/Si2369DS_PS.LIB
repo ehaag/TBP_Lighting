@@ -1,0 +1,34 @@
+*Oct 07, 2013
+*ECN S13-2060, Rev. A
+*File Name: Si2369DS_PS.txt, Si2369DS_PS.lib
+*This document is intended as a SPICE modeling guideline and does not
+*constitute a commercial product datasheet. Designers should refer to the
+*appropriate datasheet of the same number for guaranteed specification
+*limits.
+.SUBCKT Si2369DS D G S 
+M1 3 GX S S PMOS W= 2390000u L= 0.25u 
+M2 S GX S D NMOS W= 2390000u L= 2.741e-07 
+R1 D 3 1.585e-02 TC=3.291e-03 -1.601e-06 
+CGS GX S 7.547e-10 
+CGD GX D 6.227e-11 
+RG G GY 7.7 
+RTCV 100 S 1e6 TC=-7.595e-04 -5.004e-07
+ETCV GY GX 100 200 1 
+ITCV S 100 1u 
+VTCV 200 S 1 
+DBD D S DBD 2390000u 
+**************************************************************** 
+.MODEL PMOS PMOS ( LEVEL = 3 TOX = 5e-8 
++ RS = 0 KP = 2.136e-06 NSUB = 2.096e+16 
++ KAPPA = 1.396e-02 NFS = 4.758e+11 
++ LD = 0 IS = 0 TPG = -1 ) 
+*************************************************************** 
+.MODEL NMOS NMOS ( LEVEL = 3 TOX = 5e-8 
++NSUB = 1.944e+16 IS = 0 TPG = -1 ) 
+**************************************************************** 
+.MODEL DBD D ( 
++FC = 0.1 TT = 1.795e-08 T_MEASURED = 25 BV = 31 
++RS = 2.303e-02 N = 1.317e+00 IS = 1.600e-10 
++EG = 1.176e+00 XTI = 7.288e-02 TRS1 = 2.065e-03 
++CJO = 3.534e-11 VJ = 6.289e-01 M = 4.732e-01 ) 
+.ENDS 
